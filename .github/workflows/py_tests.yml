@@ -38,6 +38,7 @@ jobs:
       - name: Set-up the project
         run:  |
               docker-compose up -d postgres
+              docker logs betydb-yaba_yaba_api_1
               docker-compose run --rm bety initialize
               docker-compose run --rm bety sync
               docker-compose up -d
