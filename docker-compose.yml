@@ -3,7 +3,7 @@ version: '3'
 services:
   # postgresql with postgis docker image to hold the data
   postgres:
-    image: postgis/postgis:12-3.3
+    image: mdillon/postgis:9.5
     volumes:
       - postgres:/var/lib/postgresql/data
     networks:
@@ -11,21 +11,30 @@ services:
     ports:
       - 9000:5432
     restart: unless-stopped
+
+  db_init:
+    image: pecan/db
+    networks:
+      - bety
+    environment:
+      - BETYDB_DATABASE_URL=postgresql://postgres:password@postgres:5432/bety
+    depends_on:
+      - postgres
+
   # BETY docker image
   bety:
-    image: pecan/bety:${BRANCH:-latest}
+    image: pecan/bety:latest
     ports:
       - 8000:8000
     networks:
       - bety
     environment:
-      - INITIALIZE_URL=-w https://terraref.ncsa.illinois.edu/bety/dump/bety0/bety.tar.gz
       - REMOTE_SERVERS=6
       - UNICORN_WORKER_PROCESSES=1
       - SECRET_KEY_BASE=thisissomereallllllylongsecretkeyandshouldbelongerthanthis
       - DUMPURL=https://terraref.ncsa.illinois.edu/bety/dump/bety6/bety.tar.gz
     depends_on:
-      - postgres
+      - db_init
     restart: unless-stopped
 
   yaba_api:
@@ -37,6 +46,7 @@ services:
     ports:
       - 5001:5000
     depends_on:
+      - db_init
       - postgres
 
   yaba_client:
@@ -49,7 +59,7 @@ services:
       - 6001:6000
     depends_on:
       - yaba_api
-  
+
   yaba_visualization:
     build: ./visualization
     networks:
@@ -60,16 +70,16 @@ services:
     environment:
       - HOST=0.0.0.0
       - PORT=8075
-         
+
     ports:
       - 8008:8075
     depends_on:
       - postgres
     restart: unless-stopped
-    
+
   yaba_interface:
     build: ./interface
-    networks: 
+    networks:
       - bety
     volumes:
       - './interface:/code'
