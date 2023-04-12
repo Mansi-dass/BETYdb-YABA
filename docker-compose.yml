@@ -14,7 +14,7 @@ services:
     
   # BETY docker image
   bety:
-    image: pecan/bety:${BRANCH:-latest}
+    image: pecan/bety
     ports:
       - 8000:8000
     networks:
