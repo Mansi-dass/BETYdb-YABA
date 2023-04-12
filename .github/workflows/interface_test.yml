@@ -1,8 +1,9 @@
+---
 name: YABA interface tests
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   interface_test:
