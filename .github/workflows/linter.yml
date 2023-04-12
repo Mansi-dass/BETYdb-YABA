@@ -1,8 +1,9 @@
+---
 name: YABA Code Linter
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   lint:
