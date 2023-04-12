@@ -1,11 +1,12 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
+# For more information see:
+# https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+---
 name: YABA app and client tests
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   py_test:
@@ -13,12 +14,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        code: [ app, client]
+        code: [app, client]
         include:
-         - code: app
-           path: ./yaba_test/test_yaba.py
-         - code: client
-           path: ./yaba_client_test/test_yaba_client.py
+          - code: app
+            path: ./yaba_test/test_yaba.py
+          - code: client
+            path: ./yaba_client_test/test_yaba_client.py
 
     steps:
       - name: Checkout Code
@@ -36,7 +37,7 @@ jobs:
               pip install docker-compose
               
       - name: Set-up the project
-        run:  |
+        run: |
               docker-compose up -d postgres
               docker-compose run --rm bety initialize
               docker-compose up -d
