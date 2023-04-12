@@ -8,27 +8,27 @@ jobs:
   interface_test:
     runs-on: ubuntu-latest
     defaults:
-        run:
-          working-directory: interface
+      run:
+        working-directory: interface
 
     strategy:
       matrix:
         node-version: [16.x, 17.x]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2.7.0
+      - name: Checkout repository
+        uses: actions/checkout@v2.7.0
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2.5.2
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2.5.2
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run the tests and generate coverage report
-      run: npm test -- --coverage
+      - name: Run the tests and generate coverage report
+        run: npm test -- --coverage
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3.1.1
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3.1.1
