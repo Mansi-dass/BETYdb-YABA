@@ -15,10 +15,10 @@ jobs:
       matrix:
         code: [ app, client]
         include:
-         - code: app
-           path: ./yaba_test/test_yaba.py
-         - code: client
-           path: ./yaba_client_test/test_yaba_client.py
+          - code: app
+            path: ./yaba_test/test_yaba.py
+          - code: client
+            path: ./yaba_client_test/test_yaba_client.py
 
     steps:
       - name: checkout code
