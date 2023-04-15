@@ -16,7 +16,7 @@ jobs:
         code: [ app, client]
         include:
           - code: app
-            path: ./yaba_test/test_yaba.py
+            path: ./yaba_test/
           - code: client
             path: ./yaba_client_test/test_yaba_client.py
 
