@@ -42,7 +42,7 @@ jobs:
 
       - name: Test with pytest and generate coverage report
         run: |
-              sleep 20
+              sleep 60
               pytest --cov= ${{ matrix.path }} --cov-report=xml
       
       - name: Upload coverage to Codecov
