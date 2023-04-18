@@ -42,7 +42,7 @@ jobs:
 
       - name: Test with pytest and generate coverage report
         run: |
-              echo '#!/bin/bash
+              echo "#!/bin/bash
               set -e
               host="$1"
               shift
@@ -51,7 +51,7 @@ jobs:
                 echo "Waiting for server..."
                 sleep 5
               done
-              exec $cmd' > wait-for-server.sh
+              exec $cmd" > wait-for-server.sh
               bash wait-for-server.sh 8000:8000 pytest --cov= ${{ matrix.path }} --cov-report=xml
 #       - name: Test with pytest and generate coverage report
 #         run: |
