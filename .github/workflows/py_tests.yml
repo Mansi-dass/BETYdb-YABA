@@ -42,17 +42,17 @@ jobs:
 
       - name: Test with pytest and generate coverage report
         run: |
-              echo '#!/bin/bash
-              set -e
-              host="$1"
-              shift
-              cmd=("$@")
-              until curl --silent --output /dev/null --fail "http://$host"; do
-                echo "Waiting for server..."
-                sleep 5
-              done
-              exec "${cmd[@]}"' > wait-for-server.sh
-              bash wait-for-server.sh 8000:8000 pytest --cov= "${{ matrix.path }}" --cov-report=xml
+            echo '#!/bin/bash
+            set -e
+            host="$1"
+            shift
+            cmd="$@"
+            until curl --silent --output /dev/null --fail "http://$host"; do
+              echo "Waiting for server..."
+              sleep 5
+            done
+            exec $cmd' > wait-for-server.sh
+            bash wait-for-server.sh localhost:8000 pytest --cov= ${{ matrix.path }} --cov-report=xml
 #       - name: Test with pytest and generate coverage report
 #         run: |
 #               sleep 60
