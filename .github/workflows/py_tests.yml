@@ -37,7 +37,7 @@ jobs:
 
       - name: Set-up the project
         run: |
-              docker-compose up 
+              docker-compose up -d
 #             docker-compose -p bety up -d postgres
 #              docker run --rm --network bety_bety pecan/db
 
