@@ -38,7 +38,7 @@ jobs:
       - name: Set-up the project
         run: |
               docker-compose -p bety up -d postgres
-              docker run --rm --network bety_bety pecan/db initialize
+              docker run --rm --network bety_bety pecan/bety initialize
 
       - name: Test with pytest and generate coverage report
         run: |
