@@ -45,7 +45,7 @@ jobs:
             echo '#!/bin/bash
             set -e
             host="localhost"
-            port="8000"
+            port="3001"
             shift
             cmd="$@"
             until curl --silent --output /dev/null --fail "http://$host:$port"; do
