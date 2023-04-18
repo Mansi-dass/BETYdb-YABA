@@ -44,24 +44,24 @@ jobs:
 #              docker-compose up -d
 
 
-      - name: Test with pytest and generate coverage report
-        run: |
-            echo '#!/bin/bash
-            set -e
-            host="5001"
-            port="5000"
-            shift
-            cmd="$@"
-            until curl --silent --output /dev/null --fail "http://$host:$port"; do
-              echo "Waiting for server..."
-              sleep 5
-            done
-            exec $cmd' > wait-for-server.sh
-            bash wait-for-server.sh pytest --cov= ${{ matrix.path }} --cov-report=xml
 #       - name: Test with pytest and generate coverage report
 #         run: |
-#               sleep 60
-#               pytest --cov= ${{ matrix.path }} --cov-report=xml
+#             echo '#!/bin/bash
+#             set -e
+#             host="5001"
+#             port="5000"
+#             shift
+#             cmd="$@"
+#             until curl --silent --output /dev/null --fail "http://$host:$port"; do
+#               echo "Waiting for server..."
+#               sleep 5
+#             done
+#             exec $cmd' > wait-for-server.sh
+#             bash wait-for-server.sh pytest --cov= ${{ matrix.path }} --cov-report=xml
+      - name: Test with pytest and generate coverage report
+        run: |
+              sleep 60
+              pytest --cov= ${{ matrix.path }} --cov-report=xml
       
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
