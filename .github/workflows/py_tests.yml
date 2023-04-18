@@ -42,7 +42,7 @@ jobs:
 
       - name: Test with pytest and generate coverage report
         run: |
-              echo '#!/bin/bash'
+              echo '#!/bin/bash
               set -e
               host="$1"
               shift
