@@ -3,7 +3,7 @@ version: '3'
 services:
   # postgresql with postgis docker image to hold the data
   postgres:
-    image: postgis/postgis:12-3.3
+    image: mdillon/postgis:9.5
     volumes:
       - postgres:/var/lib/postgresql/data
     networks:
