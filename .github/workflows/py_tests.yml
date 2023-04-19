@@ -57,7 +57,7 @@ jobs:
               sleep 5
             done
             exec $cmd' > wait-for-server.sh
-            bash wait-for-server.sh 9000:5432 pytest --cov= ${{ matrix.path }} --cov-report=xml
+            bash wait-for-server.sh pytest --cov= ${{ matrix.path }} --cov-report=xml
 #       - name: Test with pytest and generate coverage report
 #         run: |
 #               sleep 60
