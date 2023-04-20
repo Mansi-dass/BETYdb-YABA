@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        ports: [9000:5432, 8000:8000, 5001:5000, 6001:6000, 8008:8075, 3001:3000]
         code: [ app, client]
         include:
           - code: app
@@ -47,7 +48,7 @@ jobs:
 
       - name: Test with pytest and generate coverage report
         run: |
-              bash ./wait-for-server.sh 0.0.0.0:5000 pytest --cov= ${{ matrix.path }} --cov-report=xml
+              bash ./wait-for-server.sh ${{ matrix.ports }} pytest --cov= ${{ matrix.path }} --cov-report=xml
 #       - name: Test with pytest and generate coverage report
 #         run: |
 #               sleep 60
