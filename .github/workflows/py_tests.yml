@@ -47,7 +47,7 @@ jobs:
 
       - name: Test with pytest and generate coverage report
         run: |
-              bash ./wait-for-server.sh localhost:3001 pytest --cov= ${{ matrix.path }} --cov-report=xml
+              bash ./wait-for-server.sh 0.0.0.0:5000 pytest --cov= ${{ matrix.path }} --cov-report=xml
 #       - name: Test with pytest and generate coverage report
 #         run: |
 #               sleep 60
