@@ -48,8 +48,10 @@ jobs:
 
       - name: Test with pytest and generate coverage report
         run: |
-              chmod +x wait-for-server.sh
-              bash ./wait-for-server.sh ${{ matrix.ports }} python -m unittest discover -v ${{ matrix.path }}
+              sleep 60
+              python -m unittest discover -v ${{ matrix.path }}
+#              chmod +x wait-for-server.sh
+ #             bash ./wait-for-server.sh ${{ matrix.ports }} python -m unittest discover -v ${{ matrix.path }}
 #              bash ./wait-for-server.sh ${{ matrix.ports }} pytest --cov= ${{ matrix.path }} --cov-report=xml
 #       - name: Test with pytest and generate coverage report
 #         run: |
