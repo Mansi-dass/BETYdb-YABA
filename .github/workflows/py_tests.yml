@@ -34,8 +34,8 @@ jobs:
       - name: Install dependencies
         run: |
               pip install --upgrade pip
-              pip install pytest pytest-cov
               pip install docker-compose
+#              pip install pytest pytest-cov
 
       - name: Set-up the project
         run: |
@@ -49,7 +49,8 @@ jobs:
       - name: Test with pytest and generate coverage report
         run: |
               chmod +x wait-for-server.sh
-              bash ./wait-for-server.sh ${{ matrix.ports }} pytest --cov= ${{ matrix.path }} --cov-report=xml
+              bash ./wait-for-server.sh ${{ matrix.ports }} python -m unittest discover -v ${{ matrix.path }}
+#              bash ./wait-for-server.sh ${{ matrix.ports }} pytest --cov= ${{ matrix.path }} --cov-report=xml
 #       - name: Test with pytest and generate coverage report
 #         run: |
 #               sleep 60
