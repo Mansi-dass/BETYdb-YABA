@@ -7,7 +7,7 @@ COPY . /code
 WORKDIR /code
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
+    git=2.40.1-1 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN /usr/local/bin/python -m pip install --upgrade pip \
