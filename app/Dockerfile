@@ -6,12 +6,13 @@ COPY . /code
 
 WORKDIR /code
 
-RUN apt-get update && apt-get install -y \
-    git
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN /usr/local/bin/python -m pip install --upgrade pip \
-    && pip install git+https://github.com/aleju/imgaug --no-deps \
-    && pip install -r requirements.txt 
+    && pip install git+https://github.com/aleju/imgaug --no-deps --no-cache-dir \
+    && pip install -r requirements.txt --no-cache-dir
 
     #  \
     # python3 \
