@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 RUN /usr/local/bin/python -m pip install --upgrade pip \
-    && pip install git+https://github.com/aleju/imgaug --no-deps --no-cache-dir \
+    && pip install git+https://github.com/aleju/imgaug==0.4.0 --no-deps --no-cache-dir \
     && pip install -r requirements.txt --no-cache-dir
 
     #  \
